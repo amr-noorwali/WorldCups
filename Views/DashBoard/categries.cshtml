@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Categries>
+@{
+
+    Layout = "~/Views/Shared/_LayoutsAdmin.cshtml";
+
+}
+<div class="modal" tabindex="-1" id="del">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> تاكيد الحذف</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>هل بالفعل تريد الحذف</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء الامر</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> حذف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <form asp-action="CreateNewCategories" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">اسم الفئة </label>
+                            <input type="text" name="Name" class="from-control" />
+
+                        </div>
+                        <div class="col">
+                            <lable class="form-label">وصف الفئة</lable>
+                            <input type="text" name="Description" class="from-control" />
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col">
+                            <label class="form-label">ايقون</label>
+                            <input type="text" name="Icon" class="from-control" />
+
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label">الرابط</label>
+                            <input type="text" name="Url" class="from-control" />
+
+                        </div>
+                        
+
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn-hover color-1">حفظ</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class=" card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                              <td>رقم الفئة</td>
+                              <td>اسم الفىة</td>
+                                <td>وصف الفئة</td>
+                                <td>ايقون</td>
+                                <td>رابط</td>
+                          </tr>  
+                        </thead>
+                        <thody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Icon</td>
+                                    <td>@item.Url</td>
+                                </tr>
+                            }
+                        </thody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

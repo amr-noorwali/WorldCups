@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CatogorisTransportation>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutsAdmin.cshtml";
+}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form asp-action="CreateNewCatogorisTransportation" method="post">
+                        <div class=" row">
+                            <div class="col">
+                                <label class="form-label" >اسم الفئة</label>
+                                <input type="text" name="Name"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-center">
+                                <button class="btn-hover color-1" >حفظ</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <table>
+                                <thead>
+                                    <tr >
+                                        <td>رقم فئة النقل </td>
+                                        <td>اسم فئة النقل </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var items in Model) {
+
+                                        <tr class="text-center">
+                                            <td>@items.Id</td>
+                                            <td>@items.Name</td>
+                                           
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

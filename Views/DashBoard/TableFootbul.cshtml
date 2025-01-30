@@ -1,0 +1,150 @@
+﻿@model IEnumerable<TableFootbul >
+
+@{
+    Layout = "~/Views/Shared/_LayoutsAdmin.cshtml";
+    var getdata = ViewBag.getdata;
+    var getdatatableFootbul = ViewBag.getdatatableFootbul;
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <form asp-action="CreateNewTableFootbul" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                            <label for="Name">اسم الملعب</label>
+                            <input type="text" class="form-control" id="Name" name="Name">
+                            <span class="text-danger" asp-validation-for="@Model.First().Name"></span>
+                        </div>
+                        <div class="col">
+                            <lable class="form-label"> المدينة</lable>
+                            <input type="text" name="Ctiy" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Ctiy"></span>
+
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label"> الملعب</label>
+                            <select class="form-select" name="studium1_id">
+                                
+                                <option>اسم الملعب</option>
+                                @if (Model != null){
+                                @foreach(var item in getdata){
+                                    <option value=@item.Id>@item.Name</option>
+                                        <span class="text-danger" asp-validation-for="@Model.First().studium1_id"></span>
+                                }}
+                            </select>
+                           
+
+                        </div>
+                        <div class="col">
+                            <label class="form-label">الفريق الاول</label>
+                            <input type="text" name="Ateam1" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Ateam1"></span>
+
+                        </div>
+
+                       
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">الفريق الثاني</label>
+                            <input type="text" name="Ateam2" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Ateam2"></span>
+
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label"> وقت المبارات</label>
+                            <input type="text" name="MatchTime" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().MatchTime"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn-hover color-1">حفظ</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class="alert alert-secondary">@TempData["Save"]</h1>
+                        </div>
+
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class=" card-body">
+                    <table class="table">
+                        <thead>
+                            <tr class="text-center">
+                                <td class="text-center">رقم </td>
+                                <td class="text-center">اسم </td>
+                                <td class="text-center">مدينة </td>
+                                <td class="text-center"> الملعب</td>
+                                <td class="text-center"> الفريق الاول</td>
+                                <td class="text-center">الفريق الثاني </td>
+                                <td class="text-center"> وقت المبارات </td>
+                                
+                            </tr>
+
+                        </thead>
+                        <thody>
+                             @if(Model!=null)
+                                        {
+                            @foreach (var items in getdatatableFootbul)
+                            {
+                                <tr >
+                                    <td>@items.Id</td>
+                                    <td>@items.NameA</td>
+                                    <td>@items.City</td>
+                                    <td>@items.NameB</td>
+                                    <td>@items.Ateam1</td>
+                                    <td>@items.Ateam2</td>
+                                    <td>@items.MatchTimeA.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                   
+
+                                </tr>
+
+                            }
+                            }
+                        </thody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</div>

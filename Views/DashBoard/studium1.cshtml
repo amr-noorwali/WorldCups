@@ -1,0 +1,219 @@
+﻿@model IEnumerable<studium1>
+@{
+    Layout = "~/Views/Shared/_LayoutsAdmin.cshtml";
+}
+<div class="modal" tabindex="-1" id="del">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> تاكيد الحذف</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>هل بالفعل تريد الحذف</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء الامر</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="confirm_delete()"> حذف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <form asp-action="CreateNewstudium1" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">اسم الملعب </label>
+                            <input type="text" name="Name" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Name"></span>
+
+                        </div>
+                        <div class="col">
+                            <lable class="form-label"> سعة الملعب</lable>
+                            <input type="text" name="Capcity" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Capcity"></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label"> مدينة الملعب</label>
+                            <input type="text" name="city" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().city"></span>
+
+                        </div>
+                        <div class="col">
+                            <label class="form-label">نوع الملعب </label>
+                            <input type="text" name="Type" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Type"></span>
+                            
+
+                        </div>
+
+                       
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">الوقت و التاريخ</label>
+                            <input type="text" name="ConstractionDate" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().ConstractionDate"></span>
+
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label"> الراعي الرسمي</label>
+                            <input type="text" name="Owner" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Owner"></span>
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">  طول الملعب</label>
+                            <input type="text" name="Length" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Length"></span>
+
+                        </div>
+                        <div class="col">
+                            <label class="form-label">  عرض الملعب</label>
+                            <input type="text" name="Width" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Width"></span>
+
+                        </div>
+                      
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label"> صورة الملعب</label>
+                            <input type="file" name="photo" class="form-control" />
+                          
+
+                        </div>
+                        <div class="col">
+                            <label class="form-label">  ارتفاع الملعب</label>
+                            <input type="text" name="Height" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Height"></span>
+
+                        </div>
+
+
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label"> التفاصيل</label>
+                            <input type="text" name="Facility" class="form-control" />
+                            <span class="text-danger" asp-validation-for="@Model.First().Facility"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn-hover color-1">حفظ</button>
+                        </div>
+                    </div>
+                    
+
+                </form>
+
+
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="card">
+                            <div class=" card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <td>رقم الملعب</td>
+                                            <td>اسم الملعب</td>
+                                            <td> سعة الملعب</td>
+                                            <td>مدينة الملعب</td>
+                                            <td>نوع الملعب </td>
+                                            <td>الوقت و التاريخ </td>
+                                            <td>الراعي الرسمي</td>
+                                            <td>  طول الملعب</td>
+                                            <td> عرض الملعب</td>
+                                            <td>ارتفاع الملعب </td>
+                                            <td> التفاصيل </td>
+                                            <td> صورة الملعب </td>
+                                            <td class="text-center" colspan="2">اجراء</td>
+                                        </tr>
+
+                                    </thead>
+                                    <thody>
+                                        @if(Model!=null)
+                                        {
+                                        @foreach (var items in Model)
+                                        {
+                                            <tr>
+                                                <td>@items.Id</td>
+                                                <td>@items.Name </td>
+                                                <td>@items.Capcity </td>
+                                                <td>@items.city</td>
+                                                <td>@items.Type</td>
+                                                <td>@items.ConstractionDate</td>
+                                                <td>@items.Owner</td>
+                                                <td>@items.Length</td>
+                                                <td>@items.Width</td>
+                                                <td>@items.Height</td>
+
+                                                <td>
+                                                    <ul>
+                                                           
+                                                        @foreach (var facility in items.Facility)
+                                                        {
+                                                            <li>@facility</li>
+                                                        }
+                                                    </ul>
+                                                </td>
+                                                
+                                                <td><img src="/iamges/@items.Iamges" width="60" height="60" class="rounded rounded-circle" /> صورة</td>
+                                                <td>
+                                                    <a onclick="showmassage(@items.Id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                                                    
+                                                </td>
+
+                                                <td>
+                                                    <a asp-action="Editestudium1" asp-route-id="@items.Id"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                                   
+                                                    
+                                                </td>
+                                                
+                                            </tr>
+
+                                        }}
+
+                                    </thody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>

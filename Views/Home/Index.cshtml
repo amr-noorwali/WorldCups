@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Categries>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <div class="row">
+     
+         @foreach(var items in Model)
+
+        {
+            <div class="col">
+                <a asp-action=@items.Url>
+
+             <div class="card">
+                 <div class="card-body">
+                     <div class="row">
+                            <div class="col text-center"><h3>@items.Name</h3></div>
+                            
+
+                            <div class="col">@Html.Raw(items.Icon)</div>
+                            
+
+                     </div>
+                 </div>
+             </div>
+             </a>
+
+            </div>
+
+
+         }
+
+     </div>
+    </div>
+

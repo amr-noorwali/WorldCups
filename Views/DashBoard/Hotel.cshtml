@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Hotel>
+@{
+    Layout = "~/Views/Shared/_LayoutsAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card mt-5">
+                <form asp-action="CreateNewHotel" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">اسم الفندق </label>
+                            <input type="text" name="Name" class="form-control" />
+
+                        </div>
+                        <div class="col">
+                            <lable class="form-label">وصف الفندق</lable>
+                            <input type="text" name="Description" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">صورة الفندق</label>
+                            <input type="file" name="photo" class="form-control" />
+
+                        </div>
+                        <div class="col">
+                            <label class="form-label">المدينة</label>
+                            <input type="text" name="City" class="form-control" />
+
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label">السعر</label>
+                            <input type="text" name="Price" class="form-control" />
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label"> التفاصيل</label>
+                            <input type="text" name="Facility" class="form-control" />
+
+                        </div>
+                        </div>
+
+                        
+
+                    
+
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="submit" class="btn-hover color-1">حفظ</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class=" card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                        <td>رقم الفندق</td>
+                        <td>اسم الفندق</td>
+                        <td>وصف الفندق</td>
+                        <td>المدينة</td>
+                        <td>سعر الفندق</td>
+                          <td>الصورة </td>
+                            </tr>
+
+                        </thead>
+                        <thody>
+                            @foreach(var items in Model){
+                                <tr>
+                                    <td>@items.Id</td>
+                                    <td>@items.Name </td>
+                                    <td>@items.Description </td>
+                                    <td>@items.City</td>
+                                    <td>@items.Price</td>
+                                    <td><img src="/iamges/@items.Images" width="60" height="60" class="rounded rounded-circle"/> صورة</td>
+                                </tr>
+
+                            }
+                           
+                        </thody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
